@@ -1,0 +1,19 @@
+# ห้าม commit ความลับ (คู่มือหัวข้อ 6) — ไฟล์ตัวอย่าง .env.example ยัง commit ได้
+.env
+.env.*
+!.env.example
+kubeconfig
+*.kubeconfig
+.kube/
+
+# ไฟล์ที่สร้างขึ้นเอง
+node_modules/
+dist/
+*.log
+
+# ไฟล์ของระบบปฏิบัติการ/โปรแกรมแก้ไข
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
