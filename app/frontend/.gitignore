@@ -1,0 +1,30 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# ห้าม commit ไฟล์ตั้งค่าเครื่องตัวเอง/รหัสผ่าน (คู่มือหัวข้อ 6) — ยกเว้นไฟล์ตัวอย่าง
+.env
+.env.*
+!.env.example
+!.env.mock
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
