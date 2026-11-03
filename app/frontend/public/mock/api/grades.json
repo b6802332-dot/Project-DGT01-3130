@@ -1,0 +1,145 @@
+{
+  "student_id": "6401001",
+  "items": [
+    {
+      "semester": "1/2567",
+      "course_code": "CS101",
+      "course_name": "การเขียนโปรแกรมเบื้องต้น",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "1/2567",
+      "course_code": "MA111",
+      "course_name": "แคลคูลัส 1",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "1/2567",
+      "course_code": "PH101",
+      "course_name": "ฟิสิกส์ 1",
+      "credit": 3,
+      "grade": "B"
+    },
+    {
+      "semester": "1/2567",
+      "course_code": "EN101",
+      "course_name": "ภาษาอังกฤษพื้นฐาน",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "1/2567",
+      "course_code": "TH101",
+      "course_name": "ภาษาไทยเพื่อการสื่อสาร",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "2/2567",
+      "course_code": "CS102",
+      "course_name": "การเขียนโปรแกรมเชิงวัตถุ",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "2/2567",
+      "course_code": "MA112",
+      "course_name": "แคลคูลัส 2",
+      "credit": 3,
+      "grade": "C+"
+    },
+    {
+      "semester": "2/2567",
+      "course_code": "CS111",
+      "course_name": "คณิตศาสตร์ดิสครีต",
+      "credit": 3,
+      "grade": "B"
+    },
+    {
+      "semester": "2/2567",
+      "course_code": "EN102",
+      "course_name": "ภาษาอังกฤษเพื่อการสื่อสาร",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "2/2567",
+      "course_code": "SO101",
+      "course_name": "มนุษย์กับสังคม",
+      "credit": 2,
+      "grade": "B+"
+    },
+    {
+      "semester": "1/2568",
+      "course_code": "CS201",
+      "course_name": "โครงสร้างข้อมูล",
+      "credit": 3,
+      "grade": "B"
+    },
+    {
+      "semester": "1/2568",
+      "course_code": "CS211",
+      "course_name": "ระบบฐานข้อมูล",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "1/2568",
+      "course_code": "CS221",
+      "course_name": "สถาปัตยกรรมคอมพิวเตอร์",
+      "credit": 3,
+      "grade": "C+"
+    },
+    {
+      "semester": "1/2568",
+      "course_code": "ST201",
+      "course_name": "สถิติสำหรับวิทยาการคอมพิวเตอร์",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "1/2568",
+      "course_code": "CS231",
+      "course_name": "การเขียนโปรแกรมเว็บ",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "2/2568",
+      "course_code": "CS202",
+      "course_name": "ระบบปฏิบัติการ",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "2/2568",
+      "course_code": "CS212",
+      "course_name": "วิศวกรรมซอฟต์แวร์",
+      "credit": 3,
+      "grade": "A"
+    },
+    {
+      "semester": "2/2568",
+      "course_code": "CS241",
+      "course_name": "เครือข่ายคอมพิวเตอร์",
+      "credit": 3,
+      "grade": "B"
+    },
+    {
+      "semester": "2/2568",
+      "course_code": "CS251",
+      "course_name": "ปัญญาประดิษฐ์เบื้องต้น",
+      "credit": 3,
+      "grade": "B+"
+    },
+    {
+      "semester": "2/2568",
+      "course_code": "EN201",
+      "course_name": "ภาษาอังกฤษเชิงวิชาการ",
+      "credit": 2,
+      "grade": "F"
+    }
+  ]
+}

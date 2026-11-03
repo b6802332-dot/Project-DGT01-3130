@@ -1,0 +1,102 @@
+{
+  "student_id": "6401001",
+  "semester": "1/2569",
+  "items": [
+    {
+      "course_code": "CS301",
+      "course_name": "การพัฒนาโปรแกรมประยุกต์บนเว็บ",
+      "day": "MON",
+      "start_time": "09:00",
+      "end_time": "12:00",
+      "room": "B201",
+      "exam_date": "2026-12-14",
+      "exam_start": "09:00",
+      "exam_end": "12:00",
+      "exam_room": "A101"
+    },
+    {
+      "course_code": "CS311",
+      "course_name": "ความมั่นคงของระบบคอมพิวเตอร์",
+      "day": "MON",
+      "start_time": "13:00",
+      "end_time": "15:00",
+      "room": "B204",
+      "exam_date": "2026-12-15",
+      "exam_start": "13:00",
+      "exam_end": "16:00",
+      "exam_room": "A102"
+    },
+    {
+      "course_code": "CS311",
+      "course_name": "ความมั่นคงของระบบคอมพิวเตอร์",
+      "day": "WED",
+      "start_time": "09:00",
+      "end_time": "12:00",
+      "room": "LAB3",
+      "exam_date": "2026-12-15",
+      "exam_start": "13:00",
+      "exam_end": "16:00",
+      "exam_room": "A102"
+    },
+    {
+      "course_code": "CS321",
+      "course_name": "การเรียนรู้ของเครื่อง",
+      "day": "TUE",
+      "start_time": "09:00",
+      "end_time": "11:00",
+      "room": "C105",
+      "exam_date": "2026-12-16",
+      "exam_start": "09:00",
+      "exam_end": "12:00",
+      "exam_room": "A101"
+    },
+    {
+      "course_code": "CS321",
+      "course_name": "การเรียนรู้ของเครื่อง",
+      "day": "THU",
+      "start_time": "13:00",
+      "end_time": "16:00",
+      "room": "LAB1",
+      "exam_date": "2026-12-16",
+      "exam_start": "09:00",
+      "exam_end": "12:00",
+      "exam_room": "A101"
+    },
+    {
+      "course_code": "CS331",
+      "course_name": "การโต้ตอบระหว่างมนุษย์กับคอมพิวเตอร์",
+      "day": "TUE",
+      "start_time": "13:00",
+      "end_time": "16:00",
+      "room": "B201",
+      "exam_date": "2026-12-18",
+      "exam_start": "13:00",
+      "exam_end": "16:00",
+      "exam_room": "A103"
+    },
+    {
+      "course_code": "CS341",
+      "course_name": "โครงงานวิทยาการคอมพิวเตอร์ 1",
+      "day": "WED",
+      "start_time": "13:00",
+      "end_time": "15:00",
+      "room": "B402",
+      "exam_date": null,
+      "exam_start": null,
+      "exam_end": null,
+      "exam_room": null
+    },
+    {
+      "course_code": "GE301",
+      "course_name": "ผู้ประกอบการยุคดิจิทัล",
+      "day": "FRI",
+      "start_time": "09:00",
+      "end_time": "12:00",
+      "room": "L201",
+      "exam_date": "2026-12-16",
+      "exam_start": "10:30",
+      "exam_end": "12:30",
+      "exam_room": "L201"
+    }
+  ]
+}
