@@ -26,4 +26,3 @@
 - ห้าม commit รหัสผ่าน, kubeconfig หรือไฟล์ `.env` (ใส่ได้แค่ `.env.example`)
 - เขียน commit message ให้อ่านรู้เรื่อง
 
-test1 (ไม่เกี่ยวกับงาน ทำเพื่อเอาคนเข้า Contributer)
