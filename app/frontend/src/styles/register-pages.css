@@ -1,0 +1,239 @@
+/* ---------- Register (ลงทะเบียนเรียน) ---------- */
+/* ใช้ตัวแปรสีจาก index.css เพื่อให้หน้าตาเข้ากับหน้าอื่น */
+
+.register-stats {
+  margin-bottom: 0;
+}
+
+/* กล่องข้อความแจ้งผลการลงทะเบียน */
+.register-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 0.92rem;
+}
+.register-message > span {
+  flex: 1;
+  color: var(--text);
+}
+.register-message.success {
+  background: var(--good-soft);
+  color: var(--good);
+}
+.register-message.error {
+  background: var(--low-soft);
+  color: var(--low);
+}
+.register-message-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.register-message-close:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ตารางรายวิชา */
+.register-table td {
+  vertical-align: middle;
+}
+.register-code {
+  color: var(--accent);
+}
+.register-course-name {
+  font-weight: 500;
+}
+.register-seats {
+  display: inline-block;
+  min-width: 34px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  background: var(--good-soft);
+  color: var(--good);
+}
+.register-seats.full {
+  background: var(--low-soft);
+  color: var(--low);
+}
+.register-action-heading,
+.register-action-cell {
+  text-align: right;
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* ปุ่มลงทะเบียน */
+.register-button {
+  justify-content: center;
+  min-width: 128px;
+  background: var(--primary-strong);
+  border-color: var(--primary-strong);
+  color: #fff;
+}
+.register-button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+.register-button:disabled {
+  cursor: not-allowed;
+  background: var(--neutral-soft);
+  border-color: var(--border);
+  color: var(--muted);
+}
+.register-button.is-registered:disabled {
+  background: var(--good-soft);
+  border-color: transparent;
+  color: var(--good);
+}
+
+.register-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: register-spin 0.7s linear infinite;
+}
+@keyframes register-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.register-footnote {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* รายวิชาที่ลงทะเบียนแล้ว */
+.register-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background: var(--good-soft);
+  color: var(--good);
+}
+
+.register-empty-mine {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 24px 0 12px;
+  text-align: center;
+}
+.register-empty-mine p {
+  font-weight: 500;
+}
+.register-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* ---------- Announcements (ข่าวประกาศ) ---------- */
+.announcement-list {
+  display: grid;
+  gap: 12px;
+}
+.announcement-card {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+.announcement-icon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+.announcement-content {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.announcement-content h2 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.announcement-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8rem;
+}
+.announcement-label {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-weight: 500;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+.announcement-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--muted);
+}
+.announcement-body {
+  color: var(--muted);
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+.announcement-empty {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 24px 0 12px;
+  text-align: center;
+}
+.announcement-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+@media (max-width: 720px) {
+  .register-button {
+    min-width: 0;
+  }
+  .announcement-card {
+    grid-template-columns: 1fr;
+  }
+  .announcement-icon {
+    display: none;
+  }
+}
