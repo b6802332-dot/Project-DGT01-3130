@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: b6802332/sis-frontend:v1
+          image: jidarat/sis-frontend:v1
           ports:
             - containerPort: 80
           resources:

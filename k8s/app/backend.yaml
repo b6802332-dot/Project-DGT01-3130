@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: b6802332/sis-backend:v1
+          image: jidarat/sis-backend:v1
           ports:
             - containerPort: 3000
           env:
