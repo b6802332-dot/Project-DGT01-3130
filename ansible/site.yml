@@ -1,0 +1,48 @@
+# ติดตั้ง k3s cluster (master + workers) และดึง kubeconfig มาที่เครื่องคุม
+# รัน: ansible-playbook -i ansible/inventory.ini ansible/site.yml
+- hosts: all
+  become: true
+  tasks:
+    - name: ติดตั้งแพ็กเกจพื้นฐาน
+      ansible.builtin.apt:
+        name: [curl, ca-certificates]
+        update_cache: true
+
+- hosts: master
+  become: true
+  tasks:
+    - name: ติดตั้ง k3s server (ใช้ Traefik ที่มากับ k3s เป็น Gateway)
+      ansible.builtin.shell: curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644 --node-ip {{ ansible_host }} --advertise-address {{ ansible_host }} --tls-san {{ ansible_host }} --flannel-iface enp0s8
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: อ่าน token สำหรับ worker
+      ansible.builtin.slurp:
+        src: /var/lib/rancher/k3s/server/node-token
+      register: node_token
+
+    - name: ดึง kubeconfig มาที่เครื่องคุม
+      ansible.builtin.fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ./kubeconfig
+        flat: true
+
+- hosts: workers
+  become: true
+  tasks:
+    - name: ติดตั้ง k3s agent
+      ansible.builtin.shell: >
+        curl -sfL https://get.k3s.io |
+        K3S_URL=https://{{ hostvars['k8s-master'].ansible_host }}:6443
+        K3S_TOKEN={{ hostvars['k8s-master'].node_token.content | b64decode | trim }} sh -s - --node-ip {{ ansible_host }} --flannel-iface enp0s8
+      args:
+        creates: /etc/systemd/system/k3s-agent.service
+
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: ชี้ kubeconfig ไปที่ IP จริงของ master
+      ansible.builtin.replace:
+        path: ./kubeconfig
+        regexp: '127\.0\.0\.1'
+        replace: "{{ hostvars['k8s-master'].ansible_host }}"

@@ -1,0 +1,41 @@
+# Apply manifests ของทีม (k8s/) ในคำสั่งเดียว — Gateway ใช้ Traefik ที่มากับ k3s
+# รัน (หลัง site.yml): ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
+# ต้องรันจากโฟลเดอร์ root ของ repo (ที่มี k8s/ อยู่)
+- hosts: master
+  become: true
+  vars:
+    kubectl: k3s kubectl
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    remote_manifests: /opt/sis-k8s
+  environment:
+    KUBECONFIG: "{{ kubeconfig }}"
+  tasks:
+    - name: รอ Traefik (Gateway) พร้อม
+      ansible.builtin.command: >
+        {{ kubectl }} rollout status deployment/traefik
+        -n kube-system --timeout=300s
+      changed_when: false
+
+    - name: คัดลอก manifests ไปที่ master
+      ansible.builtin.copy:
+        src: ../k8s/
+        dest: "{{ remote_manifests }}/"
+
+    - name: สร้าง namespace sis (ถ้ายังไม่มี)
+      ansible.builtin.shell: >
+        {{ kubectl }} create namespace sis --dry-run=client -o yaml | {{ kubectl }} apply -f -
+      changed_when: false
+
+    - name: Apply manifests ทั้งหมด
+      ansible.builtin.command: "{{ kubectl }} apply -R -f {{ remote_manifests }}"
+      register: apply_result
+      changed_when: "'configured' in apply_result.stdout or 'created' in apply_result.stdout"
+
+    - name: แสดงสถานะ Pod
+      ansible.builtin.command: "{{ kubectl }} get pods,svc,ingress,hpa -n sis"
+      register: status
+      changed_when: false
+
+    - name: พิมพ์ผล
+      ansible.builtin.debug:
+        var: status.stdout_lines
