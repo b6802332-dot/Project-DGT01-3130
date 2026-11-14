@@ -1,8 +1,13 @@
 # Apply manifests ของทีม (k8s/) ในคำสั่งเดียว — Gateway ใช้ Traefik ที่มากับ k3s
-# รัน (หลัง site.yml): ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
-# ต้องรันจากโฟลเดอร์ root ของ repo (ที่มี k8s/ อยู่)
+# รัน (หลัง site.yml) จากโฟลเดอร์ root ของ repo:
+#   ansible-playbook -i ansible/inventory.ini ansible/deploy.yml
+# จะถามรหัสผ่านฐานข้อมูล (ไม่เก็บลง Git) หรือส่งเอง: -e db_password=xxxx
 - hosts: master
   become: true
+  vars_prompt:
+    - name: db_password
+      prompt: "ตั้งรหัสผ่านฐานข้อมูล (ใช้สร้าง Secret db-secret ไม่เก็บลง Git)"
+      private: true
   vars:
     kubectl: k3s kubectl
     kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -24,6 +29,16 @@
     - name: สร้าง namespace sis (ถ้ายังไม่มี)
       ansible.builtin.shell: >
         {{ kubectl }} create namespace sis --dry-run=client -o yaml | {{ kubectl }} apply -f -
+      changed_when: false
+
+    - name: สร้าง Secret db-secret (รหัสผ่านไม่อยู่ใน Git)
+      ansible.builtin.shell: >
+        {{ kubectl }} create secret generic db-secret -n sis
+        --from-literal=POSTGRES_USER=sis
+        --from-literal=POSTGRES_PASSWORD='{{ db_password }}'
+        --from-literal=POSTGRES_DB=sisdb
+        --dry-run=client -o yaml | {{ kubectl }} apply -f -
+      no_log: true
       changed_when: false
 
     - name: Apply manifests ทั้งหมด
