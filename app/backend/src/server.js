@@ -1,11 +1,20 @@
 const express = require('express');
 const pool = require('./db');
+pool.on('error', (e) => console.error('pg pool error:', e.message));
 const app = express();
 app.use(express.json());
 
-app.get('/healthz', async (req, res) => {
-  try { await pool.query('SELECT 1'); res.json({ status: 'ok' }); }
-  catch (e) { res.status(500).json({ error: 'db not ready' }); }
+app.use((req, res, next) => {
+  if (req.path === '/healthz' || req.path === '/readyz') return next();
+  res.on('finish', () => console.log(`${req.method} ${req.originalUrl} ${res.statusCode} pod=${process.env.HOSTNAME}`));
+  next();
+});
+
+app.get('/healthz', (req, res) => res.json({ status: 'ok' }));
+
+app.get('/readyz', async (req, res) => {
+  try { await pool.query('SELECT 1'); res.json({ status: 'ready' }); }
+  catch (e) { res.status(503).json({ error: 'db not ready' }); }
 });
 
 app.use('/api/grades', require('./routes/grades'));

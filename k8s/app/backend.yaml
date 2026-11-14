@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: jidarat/sis-backend:v1
+          image: jidarat/sis-backend:v2
           ports:
             - containerPort: 3000
           env:
@@ -36,7 +36,7 @@ spec:
             requests: { cpu: 100m, memory: 128Mi }
             limits: { cpu: 300m, memory: 256Mi }
           readinessProbe:
-            httpGet: { path: /healthz, port: 3000 }
+            httpGet: { path: /readyz, port: 3000 }
             initialDelaySeconds: 5
             periodSeconds: 5
             timeoutSeconds: 3
