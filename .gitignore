@@ -20,3 +20,4 @@ Thumbs.db
 
 kubeconfig
 **/kubeconfig
+**/kubeconfig.raw
