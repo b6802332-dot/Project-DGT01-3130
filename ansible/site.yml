@@ -24,7 +24,7 @@
     - name: ดึง kubeconfig มาที่เครื่องคุม
       ansible.builtin.fetch:
         src: /etc/rancher/k3s/k3s.yaml
-        dest: ./kubeconfig
+        dest: ./kubeconfig.raw
         flat: true
 
 - hosts: workers
@@ -42,7 +42,7 @@
   connection: local
   tasks:
     - name: ชี้ kubeconfig ไปที่ IP จริงของ master
-      ansible.builtin.replace:
-        path: ./kubeconfig
-        regexp: '127\.0\.0\.1'
-        replace: "{{ hostvars['k8s-master'].ansible_host }}"
+      ansible.builtin.copy:
+        content: "{{ lookup('file', './kubeconfig.raw') | replace('127.0.0.1', hostvars['k8s-master'].ansible_host) }}"
+        dest: ./kubeconfig
+        mode: '0600'
