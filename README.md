@@ -60,11 +60,13 @@ Secret `db-secret` มีคีย์ `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POS
 - Service: `frontend` (80), `backend` (3000), `postgres-svc` (5432) ใน namespace `sis`
 - Image: `jidarat/sis-backend:v2`, `jidarat/sis-frontend:v2`
 - Backend มี `/healthz` (ไม่แตะฐานข้อมูล) และ `/readyz` (เช็กฐานข้อมูล) ใช้เป็น liveness/readiness
+- ค่าทั่วไปของ backend อยู่ใน ConfigMap `backend-config` ส่วนรหัสผ่านอยู่ใน Secret `db-secret`
 - Scaling: HPA ของ backend 2 ถึง 6 Pod ที่ CPU 50%
 
 ## ทดสอบหลัง Deploy
 
 ```bash
+export KUBECONFIG=$PWD/ansible/kubeconfig   # หรือใช้ sudo k3s kubectl บนเครื่อง master
 kubectl get pods,svc,ingress,hpa -n sis
 curl http://<IP node>/api/courses
 ```
