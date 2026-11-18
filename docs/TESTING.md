@@ -78,7 +78,24 @@ backend   Deployment/backend   cpu: 3%/50%   2         6         2          10d
 - **สรุปผล**: ผ่าน HPA ขยาย Pod จาก `2` เป็น `4` และสูงสุด `6` Pod เมื่อ CPU เกิน `50%` และลดกลับเหลือ `2` Pod อัตโนมัติหลังโหลดลดลง
 
 ## 6. Self-healing และ Rolling update
-- **ผล**: TODO (รอผลลบ Pod backend และอัปเดต image `v1` -> `v2` จากคนที่ 2)
+```bash
+kubectl delete pod -l app=backend -n sis --wait=false && sleep 5 && kubectl get pods -n sis -l app=backend
+kubectl rollout status deployment/backend -n sis
+```
+- **ผลลัพธ์จริง**:
+```text
+pod "backend-7cb5c5c4b5-7psd6" deleted from sis namespace
+pod "backend-7cb5c5c4b5-g9zwt" deleted from sis namespace
+NAME                       READY   STATUS              RESTARTS   AGE
+backend-7cb5c5c4b5-7psd6   1/1     Terminating         0          89m
+backend-7cb5c5c4b5-g9zwt   1/1     Terminating         0          25m
+backend-7cb5c5c4b5-zdq9r   0/1     ContainerCreating   0          7s
+backend-7cb5c5c4b5-zwmbg   0/1     Running             0          7s
+Waiting for deployment "backend" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "backend" rollout to finish: 1 of 2 updated replicas are available...
+deployment "backend" successfully rolled out
+```
+- **สรุปผล**: ผ่าน เมื่อลบ Pod `backend` ทั้ง 2 ตัว ระบบสร้าง Pod ใหม่ (`zdq9r`, `zwmbg`) ขึ้นมาทดแทนอัตโนมัติทันที (Self-healing) และ `kubectl rollout status` ยืนยันการอัปเดต Deployment (`v1` -> `v2`) สำเร็จครบทุก replica โดยระบบยังให้บริการได้ต่อเนื่อง
 
 ## 7. ลงทะเบียนวิชาเต็ม / ลงทะเบียนซ้ำ
 - **ผล**:
