@@ -1,0 +1,49 @@
+erDiagram
+    students ||--o{ enrollments : "student_id"
+    courses  ||--o{ enrollments : "course_code"
+    students ||--o{ grades      : "student_id"
+    courses  ||--o{ grades      : "course_code"
+    courses  ||--o{ schedules   : "course_code"
+
+    announcements {
+        SERIAL id PK
+        TEXT title "NN"
+        TEXT body "NN"
+        DATE published_at "NN, default CURRENT_DATE"
+    }
+    students {
+        TEXT student_id PK
+        TEXT full_name "NN"
+        TEXT faculty "NN"
+    }
+    courses {
+        TEXT course_code PK
+        TEXT course_name "NN"
+        INT credit "NN, credit > 0"
+        INT seats "NN, seats >= 0"
+    }
+    enrollments {
+        SERIAL id PK
+        TEXT student_id FK "NN"
+        TEXT course_code FK "NN"
+        TEXT semester "NN"
+    }
+    grades {
+        SERIAL id PK
+        TEXT student_id FK "NN"
+        TEXT course_code FK "NN"
+        TEXT semester "NN"
+        TEXT grade "NN, A to F"
+    }
+    schedules {
+        SERIAL id PK
+        TEXT course_code FK "NN"
+        TEXT day "NN"
+        TEXT start_time "NN"
+        TEXT end_time "NN"
+        TEXT room
+        DATE exam_date
+        TEXT exam_start
+        TEXT exam_end
+        TEXT exam_room
+    }
