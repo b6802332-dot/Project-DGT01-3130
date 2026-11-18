@@ -71,3 +71,19 @@ curl http://<IP node>/api/courses
 
 เปิด http://<IP node>/ แล้วลองลงทะเบียน `CS201` ด้วยรหัส `6401003` (วิชาที่เต็มคือ `PH101`, `MA101`)
 ผลทดสอบละเอียดอยู่ที่ `docs/TESTING.md` และผู้ร่วมงานอยู่ที่ `docs/CONTRIBUTION.md`
+
+## หมายเหตุ: ส่วนที่ต่างจากคู่มือโปรเจกต์
+
+| หัวข้อ | คู่มือ | ที่ใช้จริง | เหตุผล |
+|---|---|---|---|
+| Gateway | Ingress NGINX | Traefik (มากับ k3s) | ไม่ต้องติดตั้งเพิ่ม และทำหน้าที่ Ingress ได้เหมือนกัน (`/` ไป frontend, `/api` ไป backend) |
+| Playbook Ansible | `site.yml` ปิด traefik และติดตั้ง Ingress NGINX | ไม่ปิด traefik | สอดคล้องกับ Gateway ที่ใช้จริง |
+| Health check | `/healthz` อย่างเดียว | แยก `/healthz` (liveness) กับ `/readyz` (readiness) | readiness ตรวจ DB ส่วน liveness ไม่ตรวจ เพื่อไม่ให้ Pod รีสตาร์ททั้งหมดเมื่อ DB ล่ม |
+
+## หมายเหตุ: ส่วนที่ต่างจากคู่มือโปรเจกต์
+
+| หัวข้อ | คู่มือ | ที่ใช้จริง | เหตุผล |
+|---|---|---|---|
+| Gateway | Ingress NGINX | Traefik (มากับ k3s) | ไม่ต้องติดตั้งเพิ่ม และทำหน้าที่ Ingress ได้เหมือนกัน (`/` ไป frontend, `/api` ไป backend) |
+| Playbook Ansible | `site.yml` ปิด traefik และติดตั้ง Ingress NGINX | ไม่ปิด traefik | สอดคล้องกับ Gateway ที่ใช้จริง |
+| Health check | `/healthz` อย่างเดียว | แยก `/healthz` (liveness) กับ `/readyz` (readiness) | readiness ตรวจ DB ส่วน liveness ไม่ตรวจ เพื่อไม่ให้ Pod รีสตาร์ททั้งหมดเมื่อ DB ล่ม |
