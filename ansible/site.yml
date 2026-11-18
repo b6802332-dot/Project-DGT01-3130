@@ -1,5 +1,6 @@
 # ติดตั้ง k3s cluster (master + workers) และดึง kubeconfig มาที่เครื่องคุม
 # รัน: ansible-playbook -i ansible/inventory.ini ansible/site.yml
+# รันซ้ำกี่รอบก็ได้ (idempotent): รอบที่ 2 เป็นต้นไปต้องได้ changed=0
 - hosts: all
   become: true
   tasks:
@@ -21,10 +22,11 @@
         src: /var/lib/rancher/k3s/server/node-token
       register: node_token
 
-    - name: ดึง kubeconfig มาที่เครื่องคุม
+    # ดึงไฟล์ดิบ (127.0.0.1) มาเก็บไว้เฉย ๆ ไม่แก้ไข จึงไม่ถูกเขียนทับซ้ำ
+    - name: ดึง kubeconfig ดิบมาที่เครื่องคุม
       ansible.builtin.fetch:
         src: /etc/rancher/k3s/k3s.yaml
-        dest: ./kubeconfig
+        dest: "{{ playbook_dir }}/kubeconfig.raw"
         flat: true
 
 - hosts: workers
@@ -40,9 +42,11 @@
 
 - hosts: localhost
   connection: local
+  gather_facts: false
   tasks:
-    - name: ชี้ kubeconfig ไปที่ IP จริงของ master
-      ansible.builtin.replace:
-        path: ./kubeconfig
-        regexp: '127\.0\.0\.1'
-        replace: "{{ hostvars['k8s-master'].ansible_host }}"
+    # สร้าง kubeconfig ที่ชี้ IP จริงของ master จากไฟล์ดิบ (copy เทียบ checksum จึงไม่ changed ถ้าเหมือนเดิม)
+    - name: สร้าง kubeconfig ที่ชี้ไปที่ IP จริงของ master
+      ansible.builtin.copy:
+        content: "{{ lookup('ansible.builtin.file', playbook_dir ~ '/kubeconfig.raw') | regex_replace('127\\.0\\.0\\.1', hostvars['k8s-master'].ansible_host) }}\n"
+        dest: "{{ playbook_dir }}/kubeconfig"
+        mode: "0600"
