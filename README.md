@@ -79,3 +79,4 @@ curl http://<IP node>/api/courses
 | Gateway | Ingress NGINX | Traefik (มากับ k3s) | ไม่ต้องติดตั้งเพิ่ม และทำหน้าที่ Ingress ได้เหมือนกัน (`/` ไป frontend, `/api` ไป backend) |
 | Playbook Ansible | `site.yml` ปิด traefik และติดตั้ง Ingress NGINX | ไม่ปิด traefik | สอดคล้องกับ Gateway ที่ใช้จริง |
 | Health check | `/healthz` อย่างเดียว | แยก `/healthz` (liveness) กับ `/readyz` (readiness) | readiness ตรวจ DB ส่วน liveness ไม่ตรวจ เพื่อไม่ให้ Pod รีสตาร์ททั้งหมดเมื่อ DB ล่ม |
+| ฐานข้อมูล | StatefulSet + volumeClaimTemplates | Deployment + PersistentVolumeClaim แยก (`k8s/db/postgres.yaml`) | ใช้ replica เดียว ข้อมูลอยู่บน PVC จึงไม่หายเมื่อ Pod ถูกลบ (พิสูจน์แล้วจากการลบ Pod postgres) |
