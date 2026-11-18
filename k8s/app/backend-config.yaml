@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: sis
+data:
+  DB_HOST: postgres-svc
+  DB_PORT: "5432"
+  DB_NAME: sisdb
+  DB_USER: sis
+  SEMESTER: "1/2569"
