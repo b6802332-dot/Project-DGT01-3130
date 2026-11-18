@@ -4,7 +4,7 @@
 
 | คนที่ | ชื่อ | บัญชี GitHub / ชื่อใน git | หน้าที่ | PR |
 |---|---|---|---|---|
-| 1 | Jidarat | jidaratjidarat9-lang (Jidarat, jidarat) | Backend (grades, gpa, schedule), Docker, K8s, เอกสาร | #3 #4 #6 #8 #10 #12 #15 |
+| 1 | จิดารัตน์ มณีณัฐธิดา | jidaratjidarat9-lang (Jidarat, jidarat) | Backend (grades, gpa, schedule), Docker, K8s, เอกสาร | #3 #4 #6 #8 #10 #12 #14 #15 |
 | 2 | TODO | Game555web (Game555) | Backend (courses, register, announcements), Ansible, Gateway, HPA, สไลด์ | #5 #7 #11 #13 |
 | 3 | Sirapop | b6802332-dot (Sirapop) | Frontend โครงโปรเจกต์, หน้าผลการเรียน/GPA, ตารางเรียน/สอบ | #1 |
 | 4 | TODO | ส่งผ่านคนที่ 3 | Frontend หน้าลงทะเบียน, ข่าวประกาศ | #9 (เปิดโดยคนที่ 3) |
@@ -26,4 +26,5 @@
 
 | วันที่ | ผู้ค้นคว้า | หัวข้อ | แหล่งที่มา | ผลที่ได้ |
 |---|---|---|---|---|
-| TODO | | | | |
+| 2026-11-04 | จิดารัตน์ มณีณัฐธิดา (คนที่ 1) | การเขียน Multi-stage Dockerfile และ Nginx SPA routing (`try_files`) | Docker Docs & Nginx Docs | ลดขนาด image, รันด้วย user `node` ไม่ใช้ root และแก้ปัญหา refresh หน้า React แล้ว 404 |
+| 2026-11-11 | จิดารัตน์ มณีณัฐธิดา (คนที่ 1) | แยก Liveness (`/healthz`) กับ Readiness (`/readyz`) และใช้ ConfigMap + Secret ใน K8s | Kubernetes Probes & ConfigMap Docs | ป้องกัน Pod backend รีสตาร์ทวนเมื่อ DB หยุดทำงาน และเปลี่ยนค่าคอนฟิกได้โดยไม่ต้อง build image ใหม่ |
