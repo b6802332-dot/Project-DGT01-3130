@@ -8,7 +8,7 @@
 | 2 | Panuphong | Game555web (Game555) | Backend (courses, register, announcements), Ansible, Gateway, HPA, สไลด์ | #5 #7 #11 #13 |
 | 3 | Siripop | b6802332-dot (Sirapop) | Frontend โครงโปรเจกต์, หน้าผลการเรียน/GPA, ตารางเรียน/สอบ | #1 |
 | 4 | Jiamthong | ส่งผ่านคนที่ 3 | Frontend หน้าลงทะเบียน, ข่าวประกาศ | #9 (เปิดโดยคนที่ 3) |
-| 5 | ออกแบบ schema.sql (students, courses, enrollments, grades, schedules, announcements พร้อม Foreign Key และ Constraint), สร้างข้อมูลจำลอง seed.sql, เขียนสคริปต์เสริม verify.sql, backup.sh, restore.sh, วาด ER diagram | AI (ไม่ระบุชื่อเครื่องมือในบันทึก), Mermaid (วาด ER diagram) | ใช้สคริปต์ verify.sql ตรวจความถูกต้องของฐานข้อมูล |
+| 5 | Pataradon | ส่งผ่านคนที่ 3 | Database (schema.sql, seed.sql) | #2 (เปิดโดยคนที่ 3) |
 
 จำนวน commit (จาก `git shortlog -sn` รวมชื่อซ้ำของคนเดียวกันแล้ว): คนที่ 1 = 18, คนที่ 2 = 6, คนที่ 3 (รวมงานที่ส่งแทนคนที่ 4 และ 5) = 8 เป็นข้อมูลประกอบเท่านั้น
 
